@@ -57,6 +57,18 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
+/* --- Scroll Progress Indicator --- */
+#scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(to right, #3b82f6, #60a5fa);
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
 /* Layout container */
 .container {
     max-width: 1100px;
@@ -201,6 +213,103 @@ section {
 /* specific fills */
 .progress-fill-98 { width: 98%; }
 .progress-fill-85 { width: 85%; }
+
+/* --- Animation Classes --- */
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide-in from left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide-in from right */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Slide-in from bottom */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scale-in animation */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Aplicar animaciones a elementos */
+.animate-on-scroll {
+    opacity: 0;
+}
+
+.timeline-item.animate-on-scroll {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.timeline-item.animate-on-scroll:nth-child(odd) {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.timeline-item.animate-on-scroll:nth-child(even) {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+.project-card.animate-on-scroll {
+    animation: scaleIn 0.5s ease-out forwards;
+}
+
+.skill-item.animate-on-scroll {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.skill-item.animate-on-scroll:nth-child(even) {
+    animation-delay: 0.1s;
+}
+
+.skill-item.animate-on-scroll:nth-child(3n) {
+    animation-delay: 0.2s;
+}
+
+.analysis-preview.animate-on-scroll {
+    animation: slideInUp 0.7s ease-out forwards;
+}
 
 /* Timeline Styles */
 .timeline-intro {
